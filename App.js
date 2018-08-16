@@ -4,23 +4,28 @@ import { Container, Header, Content, List, ListItem, Text } from 'native-base';
 export default class ListExample extends Component {
 
   render() {
+    const contacts = [
+      'Mark',
+      'Monique',
+      'Arvin',
+      'Ulysses',
+      'Kate'
+    ]
+
     return (
       <Container>
         <Header />
         <Content>
           <List>
-            <ListItem>
-              <Text>Simon Mignolet</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Nathaniel Clyne</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Dejan Lovren</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Mark Hermano</Text>
-            </ListItem>
+            {
+              contacts.map((c) => {
+                return(
+                  <ListItem>
+                    <Text> {c} </Text>
+                  </ListItem>
+                  )
+              })
+            }
           </List>
         </Content>
       </Container>
