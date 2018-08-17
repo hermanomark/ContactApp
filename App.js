@@ -1,42 +1,25 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Text, Body} from 'native-base';
-import { phonecall } from 'react-native-communications'
+import React, { Component } from 'react'
+import ContactList from './src/ContactList'
+import ContactView from './src/ContactView'
+import { StackNavigator } from 'react-navigation'
 
-export default class ListExample extends Component {
+const AppStack = StackNavigator(
+ {
+  Home: { screen: ContactList },
+  ContactView: { screen: ContactView }
+ },
+ {
+  initialRouteName: 'Home'
+ }
+)
 
-  tawag(number) {
-    phonecall(number, false)
-  }
-
+class App extends Component {
   render() {
-    const contacts = [
-      {name: 'Mark', number: '09358645310'},
-      {name: 'Mark', number: '09358645310'},
-      {name: 'Mark', number: '09358645310'},
-      {name: 'Mark', number: '09358645310'}
-    ]
-
     return (
-      <Container>
-        <Header />
-        <Content>
-          <List>
-            {
-              contacts.map((c, i) => {
-                return(
-                  <ListItem key={i} onPress={ () => { this.tawag() } }>
-                    <Body>
-                      <Text> {c.name} </Text>
-                      <Text note> {c.number} </Text>
-                    </Body>
-                  </ListItem>
-                  )
-              })
-            }
-          </List>
-        </Content>
-      </Container>
-    );
+      <AppStack />
+      )
   }
-
 }
+
+
+export default App
